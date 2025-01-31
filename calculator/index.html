@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .calc-btn {
+            transition: all 0.3s ease;
+            border: 2px solid rgba(209, 213, 219, 0.5);
+            position: relative;
+            overflow: hidden;
+            @apply text-xl font-semibold rounded-2xl shadow-lg;
+        }
+        
+        .calc-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.5s, height 0.5s;
+        }
+        
+        .calc-btn:hover::before {
+            width: 200%;
+            height: 200%;
+        }
+        
+        .calc-btn:active {
+            transform: scale(0.95);
+        }
+        
+        .number-btn {
+            @apply bg-gray-100 hover:bg-gray-200 text-gray-800;
+            border-color: rgba(156, 163, 175, 0.5);
+        }
+        
+        .number-btn:hover {
+            border-color: rgba(107, 114, 128, 0.8);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .operator-btn {
+            @apply bg-blue-500 hover:bg-blue-600 text-white;
+            border-color: rgba(59, 130, 246, 0.5);
+        }
+        
+        .operator-btn:hover {
+            border-color: rgba(37, 99, 235, 0.8);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+        
+        .equals-btn {
+            @apply bg-green-500 hover:bg-green-600 text-white;
+            border-color: rgba(34, 197, 94, 0.5);
+        }
+        
+        .equals-btn:hover {
+            border-color: rgba(22, 163, 74, 0.8);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+        }
+        
+        .clear-btn {
+            @apply bg-red-500 hover:bg-red-600 text-white;
+            border-color: rgba(239, 68, 68, 0.5);
+        }
+        
+        .clear-btn:hover {
+            border-color: rgba(220, 38, 38, 0.8);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+        }
+
+        .calculator {
+            backdrop-filter: blur(16px) saturate(180%);
+            background-color: rgba(255, 255, 255, 0.75);
+            border-radius: 2rem;
+            border: 2px solid rgba(209, 213, 219, 0.3);
+        }
+
+        .display {
+            background-color: rgba(243, 244, 246, 0.7);
+            border-radius: 1rem;
+            border: 2px solid rgba(209, 213, 219, 0.3);
+            font-family: 'Courier New', monospace;
+        }
+
+        body {
+            background: linear-gradient(45deg, #4f46e5, #3b82f6, #0ea5e9);
+            min-height: 100vh;
+        }
+
+        .glass-effect {
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center p-4">
+    <!-- Rest of the HTML remains the same -->
+    <div class="calculator glass-effect p-6 max-w-md w-full">
+        <div class="display mb-4 p-4">
+            <div class="text-right text-gray-500 text-sm mb-1" id="history"></div>
+            <div class="text-right text-4xl font-bold text-gray-800" id="result">0</div>
+        </div>
+        
+        <div class="grid grid-cols-4 gap-3">
+            <button class="calc-btn clear-btn col-span-2 p-4" onclick="clearDisplay()">AC</button>
+            <button class="calc-btn operator-btn p-4" onclick="addOperator('/')">/</button>
+            <button class="calc-btn operator-btn p-4" onclick="addOperator('*')">×</button>
+            
+            <button class="calc-btn number-btn p-4" onclick="addNumber('7')">7</button>
+            <button class="calc-btn number-btn p-4" onclick="addNumber('8')">8</button>
+            <button class="calc-btn number-btn p-4" onclick="addNumber('9')">9</button>
+            <button class="calc-btn operator-btn p-4" onclick="addOperator('-')">-</button>
+            
+            <button class="calc-btn number-btn p-4" onclick="addNumber('4')">4</button>
+            <button class="calc-btn number-btn p-4" onclick="addNumber('5')">5</button>
+            <button class="calc-btn number-btn p-4" onclick="addNumber('6')">6</button>
+            <button class="calc-btn operator-btn p-4" onclick="addOperator('+')">+</button>
+            
+            <button class="calc-btn number-btn p-4" onclick="addNumber('1')">1</button>
+            <button class="calc-btn number-btn p-4" onclick="addNumber('2')">2</button>
+            <button class="calc-btn number-btn p-4" onclick="addNumber('3')">3</button>
+            <button class="calc-btn equals-btn row-span-2 p-4" onclick="calculate()">=</button>
+            
+            <button class="calc-btn number-btn col-span-2 p-4" onclick="addNumber('0')">0</button>
+            <button class="calc-btn number-btn p-4" onclick="addNumber('.')">.</button>
+        </div>
+    </div>
+
+    <!-- JavaScript remains the same -->
+    <script>
+        let currentInput = '0';
+        let currentOperator = '';
+        let previousInput = '';
+        let shouldResetDisplay = false;
+
+        function updateDisplay() {
+            document.getElementById('result').textContent = currentInput;
+            document.getElementById('history').textContent = previousInput + ' ' + currentOperator;
+        }
+
+        function addNumber(num) {
+            if (shouldResetDisplay) {
+                currentInput = '0';
+                shouldResetDisplay = false;
+            }
+            
+            if (num === '.' && currentInput.includes('.')) return;
+            
+            if (currentInput === '0' && num !== '.') {
+                currentInput = num;
+            } else {
+                currentInput += num;
+            }
+            updateDisplay();
+        }
+
+        function addOperator(operator) {
+            if (currentOperator && !shouldResetDisplay) {
+                calculate();
+            }
+            previousInput = currentInput;
+            currentOperator = operator;
+            shouldResetDisplay = true;
+            updateDisplay();
+        }
+
+        function calculate() {
+            if (!currentOperator || shouldResetDisplay) return;
+            
+            let result;
+            const prev = parseFloat(previousInput);
+            const current = parseFloat(currentInput);
+            
+            switch(currentOperator) {
+                case '+':
+                    result = prev + current;
+                    break;
+                case '-':
+                    result = prev - current;
+                    break;
+                case '*':
+                    result = prev * current;
+                    break;
+                case '/':
+                    if (current === 0) {
+                        alert('Cannot divide by zero');
+                        clearDisplay();
+                        return;
+                    }
+                    result = prev / current;
+                    break;
+            }
+            
+            result = parseFloat(result.toFixed(8));
+            result = result.toString();
+            
+            currentInput = result;
+            previousInput = '';
+            currentOperator = '';
+            shouldResetDisplay = true;
+            updateDisplay();
+        }
+
+        function clearDisplay() {
+            currentInput = '0';
+            currentOperator = '';
+            previousInput = '';
+            shouldResetDisplay = false;
+            updateDisplay();
+        }
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key >= '0' && event.key <= '9' || event.key === '.') {
+                addNumber(event.key);
+            } else if (event.key === '+' || event.key === '-' || event.key === '*' || event.key === '/') {
+                addOperator(event.key);
+            } else if (event.key === 'Enter' || event.key === '=') {
+                calculate();
+            } else if (event.key === 'Escape') {
+                clearDisplay();
+            }
+        });
+    </script>
+</body>
+</html>

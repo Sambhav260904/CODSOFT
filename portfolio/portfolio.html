@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Include Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Include Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #4f46e5, #3b82f6);
+            color: white;
+        }
+
+        .social-icons a {
+            transition: transform 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            transform: scale(1.2);
+        }
+
+        .section-title {
+            color: #3b82f6;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 text-gray-900">
+
+    <header class="bg-white shadow py-4">
+        <div class="container mx-auto flex justify-between items-center px-4">
+            <h1 class="text-2xl font-bold text-blue-800">Sambhav Rawani</h1>
+            <nav class="space-x-4">
+                <a href="#about" class="text-gray-700 hover:text-blue-700">About</a>
+                <a href="#skills" class="text-gray-700 hover:text-blue-700">Skills</a>
+                <a href="#projects" class="text-gray-700 hover:text-blue-700">Projects</a>
+                <a href="resume.pdf" class="text-gray-700 hover:text-blue-700">Resume</a>
+                <a href="#contact" class="text-gray-700 hover:text-blue-700">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero py-20">
+        <div class="container mx-auto text-center">
+            <h2 class="text-5xl font-bold mb-4">Hi, I'm Sambhav Rawani 👋</h2>
+            <p class="text-lg mb-6">I'm a passionate web developer with 2 years of experience in creating beautiful and functional websites. My expertise includes HTML, CSS, JavaScript, and responsive design.</p>
+            <div class="social-icons flex justify-center space-x-4 mb-6">
+                <a href="https://github.com/Sambhav260904" class="text-white text-2xl"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/sambhav-rawani/" class="text-white text-2xl"><i
+                        class="fab fa-linkedin"></i></a>
+                
+            </div>
+            <a href="#contact" class="bg-blue-700 text-white py-2 px-6 rounded-lg hover:bg-blue-600">Contact Me</a>
+            <a href="#resume"
+                class="bg-transparent border border-white text-white py-2 px-6 rounded-lg hover:bg-white hover:text-blue-700 ml-4">See
+                My Resume</a>
+        </div>
+    </section>
+
+    <section id="about" class="py-10">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-semibold section-title mb-4">About Me</h2>
+            <img src="image.png" alt="Your Name" class="rounded-full w-32 h-32 mx-auto mb-4 shadow-lg">
+            <p class="text-lg max-w-2xl mx-auto">I'm a passionate web developer with 2 years of experience in creating beautiful and functional websites. My expertise includes HTML, CSS, JavaScript, and responsive design.</p>
+        </div>
+    </section>
+
+    <section id="skills" class="bg-gray-200 py-10">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-semibold section-title mb-4">Skills</h2>
+            <div class="flex justify-center flex-wrap gap-4">
+                <span class="bg-blue-100 text-blue-700 py-2 px-4 rounded-lg shadow">HTML & CSS</span>
+                <span class="bg-blue-100 text-blue-700 py-2 px-4 rounded-lg shadow">JavaScript</span>
+                <span class="bg-blue-100 text-blue-700 py-2 px-4 rounded-lg shadow">Python</span>
+                <span class="bg-blue-100 text-blue-700 py-2 px-4 rounded-lg shadow">React</span>
+                <span class="bg-blue-100 text-blue-700 py-2 px-4 rounded-lg shadow">Node.js</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- <section id="projects" class="py-10">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-semibold section-title mb-4">Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="border p-4 rounded-lg bg-white shadow-lg">
+                    <h3 class="text-2xl font-semibold mb-2">Bone Fracture Classification</h3>
+                    <p class="mb-2">This project classifies bone fractures from X-ray images using image processing techniques like <b> HOG, LBP, and LOOP.
+                    </b></p>
+                    <a href="https://github.com/Sambhav260904/Bone-Fracture-Classification" class="bg-blue-700 text-white py-2 px-6 rounded-lg hover:bg-blue-600 " target="_blank">github-link</a>
+                </div>
+                <div class="border p-4 rounded-lg bg-white shadow-lg">
+                    <h3 class="text-2xl font-semibold mb-2">Weather App</h3>
+                    <p class="mb-2">It display's the weather condition of your city such as <b> temperature, humidity, wind speed</b>
+                    </p>
+                    <a href="https://github.com/Sambhav260904/Weather-App" class="bg-blue-700 text-white py-2 px-6 rounded-lg hover:bg-blue-600 " target="_blank">github-link</a>
+                    <a href="https://sambhav260904.github.io/Weather-App/" class="bg-blue-700 text-white py-2 px-6 rounded-lg hover:bg-blue-600 " target="_blank">demo-link</a>
+                   
+                </div>
+                
+            </div>
+        </div>
+    </section> -->
+
+
+
+
+    <section id="projects" class="py-10">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-semibold section-title mb-4">Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Bone Fracture Project -->
+                <div class="border p-4 rounded-lg bg-white shadow-lg">
+                    <h3 class="text-2xl section-title font-semibold mb-2">Bone Fracture Classification</h3>
+                    <p class="mb-4">This project classifies bone fractures from X-ray images using image processing techniques like <b>HOG, LBP, and LOOP.</b></p>
+                    <div class="flex justify-center gap-4">
+                        <a href="https://github.com/Sambhav260904/Bone-Fracture-Classification" 
+                           class="bg-blue-700 text-white py-2 px-6 rounded-lg hover:bg-blue-600" 
+                           target="_blank">GitHub</a>
+                    </div>
+                </div>
+    
+                <!-- Weather App Project -->
+                <div class="border p-4 rounded-lg bg-white shadow-lg">
+                    <h3 class="text-2xl font-semibold mb-2 section-title">Weather App</h3>
+                    <p class="mb-4">It displays the weather condition of your city such as <b>temperature, humidity, wind speed</b></p>
+                    <div class="flex justify-center gap-4">
+                        <a href="https://github.com/Sambhav260904/Weather-App" 
+                           class="bg-blue-700 text-white py-2 px-6 rounded-lg hover:bg-blue-600" 
+                           target="_blank">GitHub</a>
+                        <a href="https://sambhav260904.github.io/Weather-App/" 
+                           class="bg-blue-700 text-white py-2 px-6 rounded-lg hover:bg-blue-600" 
+                           target="_blank">Demo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="resume" class="bg-gray-200 py-10">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-semibold section-title mb-4">Resume</h2>
+            <p class="text-lg">Want to know more about my work and experience? Download my resume below:</p>
+            <p class="mt-6"><a href="resume.pdf" download
+                    class="bg-blue-700 text-white py-2 px-6 rounded-lg hover:bg-blue-600 ">Download My Resume</a></p>
+        </div>
+    </section>
+
+    <section id="contact" class="py-10">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-semibold section-title mb-4">Contact</h2>
+            <p class="text-lg">Feel free to reach out via email or phone:</p>
+            <p class="text-lg font-semibold">Email: <a href="mailto:sambhavrawani@gmail.com"
+                    class="text-blue-700 hover:underline">sambhavrawani@gmail.com</a></p>
+            <p class="text-lg font-semibold">Phone: +919959211519</p>
+        </div>
+    </section>
+
+    <footer class="bg-blue-800 text-white py-4">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2025 Sambhav Rawani. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Include Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Include FontAwesome for social icons -->
+    <script src="https://kit.fontawesome.com/5661aca02f.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
